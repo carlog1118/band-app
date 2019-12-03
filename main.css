@@ -1,0 +1,85 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    height: 100vh;
+    /*background-image: url();*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover; 
+    background-color: gray;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    height: 100px;
+}
+
+input{
+    text-align: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+}
+
+.top-container,
+    .bottom-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wiki-results-container,
+    .bit-results-container,
+        .yt-results-container{
+    height: 97vh;
+    width: 90%;
+    margin-top: 10px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: lightgray;
+}
+
+.yt-results-container{
+    margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px){
+    .main-container{
+        height: 100vh;
+        justify-content: space-evenly;
+    }
+
+    .top-container{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .wiki-results-container,
+        .bit-results-container{
+        height: 60vh;
+        width: 40%;
+    }
+
+    .yt-results-container{
+        height: 30vh;
+        width: 95%;
+    }
+
+    .wiki-results-container,
+        .bit-results-container,
+            .yt-results-container{
+        
+    }
+
+}
