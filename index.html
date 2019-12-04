@@ -9,11 +9,11 @@
 </head>
 <body>
     <header>
-        <h1>Title</h1>
+        <h1 id="js-error-message"></h1>
         
             <form>
                 <label for="act">Enter text</label>
-                <input type="text" name="act" id="act" required placeholder="enter text">
+                <input type="text" name="act" id="js-act" required placeholder="enter text">
                 <button type="submit">Search</button>
             </form>
         
@@ -23,9 +23,11 @@
             <div class="top-container">
                 <div class="wiki-results-container">
                     <h2>Wiki Results</h2>
+                    <div class="js-wiki-results wiki-results">
+                    </div>
                 </div> 
                 <div class="bit-results-container">
-                    <h2> BIT Results</h2>
+                    <h2>BIT Results</h2>
                 </div>
             </div>        
             <div class="bottom-container">
@@ -35,5 +37,7 @@
             </div>
         </div>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
