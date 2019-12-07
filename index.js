@@ -6,11 +6,14 @@ const tubeUrl= 'https://www.googleapis.com/youtube/v3/search'
 
 function addVideo(videoArray){
     console.log(videoArray);
-    for (var y= 0; y< 1; y++){
-        console.log(videoArray[y]);
-        /*$('.js-youtube-results').append(`
-        <iframe width="560" height="315" src="https://www.youtube.com${videoArray[y]}/embed/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `);*/
+    $('.js-youtube-results').empty();
+    for (var y= 0; y< 3; y++){
+        
+        $('.js-youtube-results').append(`
+        <iframe width="210" height="157" frameborder="0"
+                            src="https://www.youtube.com/embed/${videoArray[y]}">
+                            </iframe>
+        `);
     }
 }
 
@@ -19,10 +22,10 @@ function formatYouQueryString(youParams){
     return youQueryItems.join('&');
 }
 
-function getYouTube(act){
+function getYouTube(liveAct){
     const youParams= {
         part: 'snippet',
-        q: act,
+        q: liveAct,
         maxResults: 10,
         key: tubeKey
     }
@@ -42,6 +45,10 @@ function getYouTube(act){
             /*for (var x=0; x<videoArray.length; x++){
                 videoIdArray.push(videoArray[x].videoId)
             }*/
+            videoArray = videoArray.filter(function( element ) {
+                return element !== undefined;
+             });
+
             addVideo(videoArray);
         })           
 }
@@ -73,8 +80,9 @@ function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
         var act= $('#js-act').val();
+        var liveAct= act + 'live'
         getWiki(act);
-        getYouTube(act);
+        getYouTube(liveAct);
     })
 }
 
