@@ -79,7 +79,7 @@ function getWiki(act){
 function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
-        var act= $('#js-act').val();
+        var act= $('#js-act').val();    
         var liveAct= act + 'live'
         getWiki(act);
         getYouTube(liveAct);
