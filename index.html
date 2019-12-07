@@ -12,22 +12,25 @@
         <h1 id="js-error-message"></h1>
         
             <form>
-                <label for="act">Enter text</label>
+                <label for="act">Search an artist to watch a live performance</label>
                 <input type="text" name="act" id="js-act" required placeholder="enter text">
                 <button type="submit">Search</button>
             </form>
         
     </header>
-    <main>
+    <main class="hidden">
         <div class="main-container">
             <div class="top-container">
-                <div class="wiki-results-container">
+                <!--<div class="wiki-results-container">
                     <h2>Wiki Results</h2>
                     <div class="js-wiki-results wiki-results">
                     </div>
-                </div> 
-                <div class="bit-results-container">
-                    <h2>BIT Results</h2>
+                </div>-->
+                <div id="artist-image" class="bit-results-container js-bit-results">
+                    <h2 class="js-artist-name">BIT Results</h2>
+                    <ul>
+
+                    </ul>
                 </div>
             </div>        
             <div class="bottom-container">

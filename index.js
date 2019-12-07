@@ -5,7 +5,6 @@ const tubeKey= 'AIzaSyAZ-g0mBy0mleLXXrYrLDhHlWBmJ7GE-vg';
 const tubeUrl= 'https://www.googleapis.com/youtube/v3/search'
 
 function addVideo(videoArray){
-    console.log(videoArray);
     $('.js-youtube-results').empty();
     for (var y= 0; y< 3; y++){
         
@@ -37,14 +36,9 @@ function getYouTube(liveAct){
         .then (responseJson => {
             const videos= responseJson.items
             var videoArray= [];
-            //var videoIdArray= [];
             for (var i=0; i<videos.length; i++){
                 videoArray.push(videos[i].id.videoId);
             }
-            //console.log(videoArray);
-            /*for (var x=0; x<videoArray.length; x++){
-                videoIdArray.push(videoArray[x].videoId)
-            }*/
             videoArray = videoArray.filter(function( element ) {
                 return element !== undefined;
              });
@@ -54,9 +48,8 @@ function getYouTube(liveAct){
 }
 
 
-
 //wiki
-function addWikiText(wikiText){
+/*function addWikiText(wikiText){
     $('.js-wiki-results').empty();
     const wikiHtml= `<p>${wikiText}</p>`;
     $('.js-wiki-results').append(wikiHtml);
@@ -74,15 +67,63 @@ function getWiki(act){
     const wikiText= page.extract;
     addWikiText(wikiText);
   })
+}*/
+
+
+//bandsintown
+function updateName(artistName){
+    $('.js-artist-name').html(artistName);
 }
+
+function updateImg(bitImgUrl){
+    $("#artist-image").css('background-image', `url(${bitImgUrl})` )
+}
+
+function addProfiles(fbUrl, bitPageUrl){
+    $('ul').empty();
+    $('ul').append(`<li><a href="${fbUrl}" target="_blank">Facebook Page</a></li>
+    <li><a href="${bitPageUrl}" target="_blank">Bandsintown Page</a></li>`);
+}
+
+function getBit(act){
+    const bitAct= encodeURIComponent(act);
+    const bitUrl= `https://cors-anywhere.herokuapp.com/rest.bandsintown.com/artists/${bitAct}?app_id=586215c21aaf5f7d114220c3833318f0`
+    fetch (bitUrl)
+        .then (response => response.json())
+        .then (responseJson =>{
+            const artistName= responseJson.name;
+            const bitImgUrl= responseJson.image_url;
+            const fbUrl= responseJson.facebook_page_url;
+            const bitPageUrl= responseJson.url;
+            addProfiles(fbUrl, bitPageUrl);
+            updateName(artistName);
+            updateImg(bitImgUrl);
+        })
+}
+
+function showResults(){
+    $('main').removeClass('hidden');
+}
+
+function autoScroll(){
+        $('html, body').animate({
+            scrollTop: ($('.main-container').offset().top)
+        },500)
+    };
+
+
 
 function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
-        var act= $('#js-act').val();    
-        var liveAct= act + 'live'
-        getWiki(act);
+        var act= $('#js-act').val(); 
+            act= act.replace(/\s/g, '') ;  
+        var liveAct= act + 'live';
+        /*getWiki(act);*/
+        showResults();
+        autoScroll();
         getYouTube(liveAct);
+        getBit(act);
     })
 }
 
