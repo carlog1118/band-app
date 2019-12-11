@@ -6,10 +6,9 @@ const tubeUrl= 'https://www.googleapis.com/youtube/v3/search'
 
 function addVideo(videoArray){
     $('.js-youtube-results').empty();
-    for (var y= 0; y< 3; y++){
-        
+    for (var y= 0; y<3; y++){
         $('.js-youtube-results').append(`
-        <iframe width="210" height="157" frameborder="0"
+        <iframe  frameborder="0"
                             src="https://www.youtube.com/embed/${videoArray[y]}">
                             </iframe>
         `);
@@ -46,29 +45,6 @@ function getYouTube(liveAct){
             addVideo(videoArray);
         })           
 }
-
-
-//wiki
-/*function addWikiText(wikiText){
-    $('.js-wiki-results').empty();
-    const wikiHtml= `<p>${wikiText}</p>`;
-    $('.js-wiki-results').append(wikiHtml);
-}
-
-function getWiki(act){
-    const wikiRoot= 'https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=';
-    const wikiUrl= wikiRoot+act;
-    fetch(wikiUrl)
-    .then(function(response) {
-    return response.json();
-  }).then(function(data) {
-    const pages = data.query.pages;
-    const page = pages[Object.keys(pages)[0]];
-    const wikiText= page.extract;
-    addWikiText(wikiText);
-  })
-}*/
-
 
 //bandsintown
 function updateName(artistName){
@@ -107,11 +83,17 @@ function showResults(){
 
 function autoScroll(){
         $('html, body').animate({
-            scrollTop: ($('.main-container').offset().top)
+            scrollTop: ($('.main-container').offset().top-10)
         },500)
-    };
+};
 
-
+function arrowScroll(){
+    $('.bottom-arrow').click(function(event){    
+        $('html, body').animate({
+            scrollTop: ($('.yt-results-container').offset().top-10)
+        },500)
+    })
+};
 
 function watchForm(){
     $('form').submit(event => {
@@ -119,12 +101,12 @@ function watchForm(){
         var act= $('#js-act').val(); 
             act= act.replace(/\s/g, '') ;  
         var liveAct= act + 'live';
-        /*getWiki(act);*/
         showResults();
         autoScroll();
         getYouTube(liveAct);
         getBit(act);
     })
+    arrowScroll();
 }
 
 $(watchForm);

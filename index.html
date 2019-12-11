@@ -5,41 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="main.css" rel="stylesheet">
+    <link href="fonts/stylesheet.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <h1 id="js-error-message"></h1>
+        <h1 class="title">The Opener</h1>
         
             <form>
                 <label for="act">Search an artist to watch a live performance</label>
-                <input type="text" name="act" id="js-act" required placeholder="enter text">
+                <input type="text" name="act" id="js-act" required placeholder="enter an artist">
                 <button type="submit">Search</button>
             </form>
         
     </header>
     <main class="hidden">
         <div class="main-container">
-            <div class="top-container">
-                <!--<div class="wiki-results-container">
-                    <h2>Wiki Results</h2>
-                    <div class="js-wiki-results wiki-results">
-                    </div>
-                </div>-->
-                <div id="artist-image" class="bit-results-container js-bit-results">
-                    <h2 class="js-artist-name">BIT Results</h2>
-                    <ul>
-
-                    </ul>
+            
+                <div class="top-container">
+                    <h2 class="js-artist-name artist-name"></h2>
+                    <div id="artist-image" class="bit-results-container js-bit-results">
                 </div>
-            </div>        
-            <div class="bottom-container">
-                <div class="yt-results-container">
-                    <h2>Youtube Results</h2>
-                    <div class="js-youtube-results">
-                            
+                <div class="bottom-arrow"></div>        
+                <div class="bottom-container">
+                    <div class="yt-results-container">
+                        <h2 class="youtube-results">Live Performances</h2>
+                        <div class="js-youtube-results yt-results-videos">                            
+                        </div>
                     </div>
                 </div>
+            
+            <div class="profiles">
+                <ul>
+                </ul>
             </div>
         </div>
     </main>
