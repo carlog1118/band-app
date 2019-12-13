@@ -9,7 +9,7 @@ function addVideo(videoArray){
     for (var y= 0; y<3; y++){
         $('.js-youtube-results').append(`
         <iframe  frameborder="0"
-                            src="https://www.youtube.com/embed/${videoArray[y]}">
+                            src="https://www.youtube.com/embed/${videoArray[y]}" allowfullscreen>
                             </iframe>
         `);
     }

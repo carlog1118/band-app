@@ -20,11 +20,11 @@ body {
 }
 
 .hidden {
-    display: none
+    display: none;
 }
 
 .title {
-    font-size: 46px;
+    font-size: 60px;
     color: white;
 }
 
@@ -41,6 +41,11 @@ button {
     width: 80px;
     margin-top: 10px;
     font-size: 16px;
+}
+
+button:hover {
+    background-color: gray;
+    cursor: pointer;
 }
 
 form {
@@ -84,8 +89,6 @@ input{
     background-color: black;
 }
 
-
-
 li {
     font-size: 20px;
     list-style: none;
@@ -93,7 +96,7 @@ li {
 }
 
 li:hover {
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .profiles{
@@ -140,7 +143,6 @@ label,
     text-align: center;
 }
 
-
 .bit-results-container,
     .yt-results-container{
     width: 90%;
@@ -180,10 +182,15 @@ iframe {
     height: 150px;
 }
 
-
 @media only screen and (min-width: 768px){
     .yt-results-videos{
         flex-direction: row;
+        justify-content: space-between;
+        width: 750px; 
+    }
+
+    .youtube-results{
+        margin-top: 30px;
     }
 
     .bit-results-container {
@@ -198,8 +205,7 @@ iframe {
 @media only screen and (min-width: 1279px){
     .bit-results-container{
         height: 600px;
-        width: 400px;
-        
+        width: 400px;        
     }
 
 }
