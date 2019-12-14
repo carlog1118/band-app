@@ -182,8 +182,9 @@ iframe {
     height: 150px;
 }
 
-p{
+.js-error-message{
     color: white;
+    font-size: 20px;
 }
 @media only screen and (min-width: 768px){
     .yt-results-videos{

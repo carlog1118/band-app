@@ -52,6 +52,7 @@ function updateName(artistName){
 }
 
 function updateImg(bitImgUrl){
+    autoScroll();
     $("#artist-image").css('background-image', `url(${bitImgUrl})` )
 }
 
@@ -70,26 +71,30 @@ function getBit(act){
     const bitAct= encodeURIComponent(act);
     const bitUrl= `https://cors-anywhere.herokuapp.com/rest.bandsintown.com/artists/${bitAct}?app_id=586215c21aaf5f7d114220c3833318f0`
     fetch (bitUrl)
-        .then (response => {
-            // the new code starts here
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error(response.statusText);
-          })
+        .then (response => response.json())
         .then (responseJson =>{
-            console.log(responseJson);
+            //console.log(responseJson);
             const artistName= responseJson.name;
             const bitImgUrl= responseJson.image_url;
             const fbUrl= responseJson.facebook_page_url;
             const bitPageUrl= responseJson.url;
+            console.log(bitImgUrl);
             addProfiles(fbUrl, bitPageUrl);
             updateName(artistName);
+            if (bitImgUrl==null){
+                throw new Error ('We didn\'t recognize that artist. Please try again.');
+            } else {
             updateImg(bitImgUrl);
+            }
         })
-        .catch(err => {
-            $('.js-error-message').text(`Something went wrong: ${err.message}`);
+        .catch(error => {
+            $('.js-error-message').removeClass('hidden');
+            $('.js-error-message').text(`${error.message}`);
         })
+}
+
+function hideError(){
+    $('.js-error-message').addClass('hidden');
 }
 
 function showResults(){
@@ -110,6 +115,8 @@ function arrowScroll(){
     })
 };
 
+
+
 function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
@@ -117,9 +124,9 @@ function watchForm(){
             act= act.replace(/\s/g, '') ;  
         var liveAct= act + 'live';
         showResults();
-        autoScroll();
         getYouTube(liveAct);
         getBit(act);
+        hideError();
     })
     arrowScroll();
 }
