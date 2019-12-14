@@ -57,16 +57,28 @@ function updateImg(bitImgUrl){
 
 function addProfiles(fbUrl, bitPageUrl){
     $('ul').empty();
+    $('ul').removeClass('hidden');
+    if (fbUrl===''||bitPageUrl==='') {
+    $('ul').addClass('hidden');
+    } else {
     $('ul').append(`<li><a href="${fbUrl}" target="_blank">Facebook Page</a></li>
     <li><a href="${bitPageUrl}" target="_blank">Bandsintown Page</a></li>`);
+    }
 }
 
 function getBit(act){
     const bitAct= encodeURIComponent(act);
     const bitUrl= `https://cors-anywhere.herokuapp.com/rest.bandsintown.com/artists/${bitAct}?app_id=586215c21aaf5f7d114220c3833318f0`
     fetch (bitUrl)
-        .then (response => response.json())
+        .then (response => {
+            // the new code starts here
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error(response.statusText);
+          })
         .then (responseJson =>{
+            console.log(responseJson);
             const artistName= responseJson.name;
             const bitImgUrl= responseJson.image_url;
             const fbUrl= responseJson.facebook_page_url;
@@ -74,6 +86,9 @@ function getBit(act){
             addProfiles(fbUrl, bitPageUrl);
             updateName(artistName);
             updateImg(bitImgUrl);
+        })
+        .catch(err => {
+            $('.js-error-message').text(`Something went wrong: ${err.message}`);
         })
 }
 
