@@ -201,16 +201,12 @@ iframe {
     .bit-results-container {
         height: 600px;
         width: 400px;
-    }
+    } 
 
     .yt-results-container{
         margin-top: 60px;
     }
 
-}
-
-@media only screen and (min-width: 1024px){
-   
 }
 
 
