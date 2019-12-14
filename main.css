@@ -186,6 +186,7 @@ iframe {
     color: white;
     font-size: 20px;
 }
+
 @media only screen and (min-width: 768px){
     .yt-results-videos{
         flex-direction: row;
@@ -198,20 +199,18 @@ iframe {
     }
 
     .bit-results-container {
-        height: 900px
+        height: 600px;
+        width: 400px;
     }
 
     .yt-results-container{
         margin-top: 60px;
     }
+
 }
 
-@media only screen and (min-width: 1279px){
-    .bit-results-container{
-        height: 600px;
-        width: 400px;        
-    }
-
+@media only screen and (min-width: 1024px){
+   
 }
 
 
