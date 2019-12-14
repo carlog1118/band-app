@@ -101,6 +101,7 @@ li:hover {
 
 .profiles{
     width: 100%;
+    min-width: 0;
     border-top: solid 1px white;
 }
 
@@ -109,6 +110,7 @@ ul {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    min-width: 0px;
     text-align: center;
 }
 
@@ -206,7 +208,6 @@ iframe {
     .yt-results-container{
         margin-top: 60px;
     }
-
 }
 
 

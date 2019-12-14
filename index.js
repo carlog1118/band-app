@@ -9,9 +9,8 @@ function addVideo(videoArray){
     for (var y= 0; y<3; y++){
         $('.js-youtube-results').append(`
         <iframe  frameborder="0"
-                            src="https://www.youtube.com/embed/${videoArray[y]}" allowfullscreen>
-                            </iframe>
-        `);
+        src="https://www.youtube.com/embed/${videoArray[y]}" allowfullscreen>
+        </iframe>`);
     }
 }
 
@@ -93,6 +92,7 @@ function getBit(act){
         })
 }
 
+//hide & scroll
 function hideError(){
     $('.js-error-message').addClass('hidden');
 }
@@ -102,9 +102,9 @@ function showResults(){
 }
 
 function autoScroll(){
-        $('html, body').animate({
-            scrollTop: ($('.main-container').offset().top-10)
-        },500)
+    $('html, body').animate({
+        scrollTop: ($('.main-container').offset().top-10)
+    },500)
 };
 
 function arrowScroll(){
