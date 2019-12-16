@@ -93,6 +93,7 @@ li {
     font-size: 20px;
     list-style: none;
     padding: 20px;
+    margin: auto;
 }
 
 li:hover {
@@ -188,6 +189,7 @@ iframe {
     color: white;
     font-size: 20px;
 }
+
 
 @media only screen and (min-width: 768px){
     .yt-results-videos{

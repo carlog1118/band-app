@@ -2,7 +2,7 @@
 
 //youtube
 const tubeKey= 'AIzaSyAZ-g0mBy0mleLXXrYrLDhHlWBmJ7GE-vg';
-const tubeUrl= 'https://www.googleapis.com/youtube/v3/search'
+const tubeUrl= 'https://www.googleapis.com/youtube/v3/search';
 
 function addVideo(videoArray){
     $('.js-youtube-results').empty();
@@ -11,13 +11,13 @@ function addVideo(videoArray){
         <iframe  frameborder="0"
         src="https://www.youtube.com/embed/${videoArray[y]}" allowfullscreen>
         </iframe>`);
-    }
-}
+    };
+};
 
 function formatYouQueryString(youParams){
     const youQueryItems = Object.keys(youParams).map(key => `${[encodeURIComponent(key)]}=${encodeURIComponent(youParams[key])}`);
     return youQueryItems.join('&');
-}
+};
 
 function getYouTube(liveAct){
     const youParams= {
@@ -25,25 +25,24 @@ function getYouTube(liveAct){
         q: liveAct,
         maxResults: 10,
         key: tubeKey
-    }
+    };
     const youQueryString=  formatYouQueryString(youParams);
     const tubeSearchUrl= tubeUrl + '?' + youQueryString;
     
     fetch(tubeSearchUrl)
         .then (response => response.json())
         .then (responseJson => {
-            const videos= responseJson.items
+            var videos= responseJson.items;
             var videoArray= [];
             for (var i=0; i<videos.length; i++){
                 videoArray.push(videos[i].id.videoId);
-            }
-            videoArray = videoArray.filter(function( element ) {
+            };
+            videoArray = videoArray.filter(function(element){
                 return element !== undefined;
              });
-
             addVideo(videoArray);
-        })           
-}
+        })         
+};
 
 //bandsintown
 function updateName(artistName){
@@ -52,8 +51,8 @@ function updateName(artistName){
 
 function updateImg(bitImgUrl){
     autoScroll();
-    $("#artist-image").css('background-image', `url(${bitImgUrl})` )
-}
+    $("#artist-image").css('background-image', `url(${bitImgUrl})`);
+};
 
 function addProfiles(fbUrl, bitPageUrl){
     $('ul').empty();
@@ -63,8 +62,8 @@ function addProfiles(fbUrl, bitPageUrl){
     } else {
     $('ul').append(`<li><a href="${fbUrl}" target="_blank">Facebook Page</a></li>
     <li><a href="${bitPageUrl}" target="_blank">Bandsintown Page</a></li>`);
-    }
-}
+    };
+};
 
 function getBit(act){
     const bitAct= encodeURIComponent(act);
@@ -72,25 +71,23 @@ function getBit(act){
     fetch (bitUrl)
         .then (response => response.json())
         .then (responseJson =>{
-            //console.log(responseJson);
             const artistName= responseJson.name;
             const bitImgUrl= responseJson.image_url;
             const fbUrl= responseJson.facebook_page_url;
             const bitPageUrl= responseJson.url;
-            console.log(bitImgUrl);
             addProfiles(fbUrl, bitPageUrl);
             updateName(artistName);
             if (bitImgUrl==null){
                 throw new Error ('We didn\'t recognize that artist. Please try again.');
             } else {
             updateImg(bitImgUrl);
-            }
+            };
         })
         .catch(error => {
             $('.js-error-message').removeClass('hidden');
             $('.js-error-message').text(`${error.message}`);
         })
-}
+};
 
 //hide & scroll
 function hideError(){
@@ -115,8 +112,6 @@ function arrowScroll(){
     })
 };
 
-
-
 function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
@@ -129,6 +124,6 @@ function watchForm(){
         hideError();
     })
     arrowScroll();
-}
+};
 
 $(watchForm);
